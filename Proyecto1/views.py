@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
+from django.template.loader import get_template  #CARGADOR DE PLANTILLAS
 
 class Persona(object):
     def __init__(self, nombre, apellido):
@@ -18,11 +19,14 @@ def saludo(request):
     ahora = datetime.datetime.now()
     temasDelCurso = ["Plantillas", "Modelos", "Formularios", "Vistas", "Despliegue"]
 
-    doc_externo=open("C:/Users/JuanManuelFrancoRuiz/OneDrive - 900053370_AFFI SAS/Escritorio/ProyectosDjango/Proyecto1/plantillas/miplantilla.html")
-    plt=Template(doc_externo.read())
-    doc_externo.close()
-    ctx=Context({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora, "temas":temasDelCurso})
-    documento=plt.render(ctx)
+    # doc_externo=open("C:/Users/JuanManuelFrancoRuiz/OneDrive - 900053370_AFFI SAS/Escritorio/ProyectosDjango/Proyecto1/plantillas/miplantilla.html")
+    # plt=Template(doc_externo.read())
+    # doc_externo.close()
+
+    doc_externo=loader.get_template('miplantilla.html') #CARGAR PLANTILLAS
+
+    # ctx=Context({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora, "temas":temasDelCurso})
+    documento=doc_externo.render({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora, "temas":temasDelCurso})
 
     return HttpResponse(documento)
 

@@ -3,6 +3,17 @@
         <h1 style="color: red">
             Hola cambie de rama
         </h1>
+
+
+        <!-- NO TEMAS -->
+        
+        {% if nombre_persona == 'Profe Juan' %}
+        <p>El curso lo imparte el profesor titular</p>
+        {% else %}
+        <p>El curso lo imparte el profesor suplente</p>
+        {% endif %}
+
+
         <p>El nombre del profesor es: {{nombre_persona}} {{apellido_persona}}</p>
         <p>Estamos viendo el tema de las plantillas a dia: {{momento_actual}}</p>
         <p><strong>Temas del curso:</strong></p>
